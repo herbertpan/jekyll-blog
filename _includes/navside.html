@@ -1,33 +1,56 @@
-<div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 aside visible-md visible-lg">
+<!-- Left and middle Nav Side bars -->
+<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 aside visible-md visible-lg">
   <div class="row navside">
-    <div class="col-md-3 col-xs-3 aside1">
+    <!-- Left Nav Side bar (1/4 for the Left Nav and mid category bar => 1/12 for the whole large screen) -->
+    <div class="col-xs-3 col-md-3 aside1">
+      <!-- class="pjaxlink" will only re-render article area and leave nav and category bar unchanged -->
+      <!-- pjax allows to re-render the specific area instead of the whole page -->
       <a class="pjaxlink" href="/"><img src="{{ site.gavatar }}" class="img-circle avatar"></a>
+      <!-- https://getbootstrap.com/docs/3.3/components/#nav-pills -->
       <ul class="nav nav-pills nav-stacked">
+        <!-- Tabs Above Horizontal line -->
+        <!-- https://jekyllrb.com/docs/front-matter/#predefined-variables-for-posts -->
+        <!-- https://jekyllrb.com/docs/posts/#categories-and-tags -->
+        <!-- tab-content in the below controls what to show on the UI: https://getbootstrap.com/docs/4.0/components/navs/#using-data-attributes -->
         {% for category in site.categories %}
-          <li><a href="#{{ category | first }}" data-toggle="tab">
+        <li>
+          <!-- tab-content already renders all posts for all categories, use href to tell the active one -->
+          <a href="#{{ category | first }}" data-toggle="tab">
             <img class="nav-icon" src="/public/img/{{ category[0] }}.svg">
             <span class="nav-category">{{ category[0] }}</span>
-          </a></li>
+          </a>
+        </li>
         {% endfor %}
+        <!-- Horizontal line -->
         <hr style="margin: 0;"/>
-        <li><a class="pjaxlink" href="https://wiki.jimmylv.info/" target="_blank">
-          <img class="nav-icon" src="/public/img/资源.svg"><span class="nav-category"> {{ site.locals.wiki }}</span>
-        </a></li>
-        <li><a class="pjaxlink" href="/pages/ideas/">
-          <img class="nav-icon" src="/public/img/想法.svg"><span class="nav-category"> {{ site.locals.ideas }}</span>
-        </a></li>
-        <li><a href="#tags" data-toggle="tab">
-          <img class="nav-icon" src="/public/img/标签.svg"><span class="nav-category"> {{ site.locals.tags }}</span>
-        </a></li>  
-        <li><a class="pjaxlink" href="/pages/archive/">
-          <img class="nav-icon" src="/public/img/归档.svg"><span class="nav-category"> {{ site.locals.archive }}</span>
-        </a></li>
-        <li><a class="pjaxlink" href="https://www.bing.com/search?q=site%3Ablog.jimmylv.info" target="_blank">
-          <img class="nav-icon" src="/public/img/搜索.svg"><span class="nav-category"> {{ site.locals.search }}</span>
-        </a></li>
-        <li><a class="pjaxlink" href="/pages/about/">
-          <img class="nav-icon" src="/public/img/关于.svg"><span class="nav-category"> {{ site.locals.about }}</span>
-        </a></li>
+        <!-- Tabs Below Horizontal line -->
+        <li>
+          <a class="pjaxlink" href="/pages/ideas/">
+            <img class="nav-icon" src="/public/img/想法.svg">
+            <span class="nav-category"> {{ site.locals.ideas }}</span>
+          </a>
+        </li>
+        <li>
+          <!-- #<ID> this link an element with a specified <Id> within a page => see page bottom -->
+          <a href="#tags" data-toggle="tab">
+            <img class="nav-icon" src="/public/img/标签.svg"><span class="nav-category"> {{ site.locals.tags }}</span>
+          </a>
+        </li>
+        <li>
+          <a class="pjaxlink" href="/pages/archive/">
+            <img class="nav-icon" src="/public/img/归档.svg"><span class="nav-category"> {{ site.locals.archive }}</span>
+          </a>
+        </li>
+        <li>
+          <a class="pjaxlink" href="https://www.bing.com/search?q=site%3Ablog.jimmylv.info" target="_blank">
+            <img class="nav-icon" src="/public/img/搜索.svg"><span class="nav-category"> {{ site.locals.search }}</span>
+          </a>
+        </li>
+        <li>
+          <a class="pjaxlink" href="/pages/about/">
+            <img class="nav-icon" src="/public/img/关于.svg"><span class="nav-category"> {{ site.locals.about }}</span>
+          </a>
+        </li>
       </ul>
       <div class="aside1_bottom">
         <table class="table table-condensed">
@@ -38,39 +61,50 @@
         </table>
       </div>
     </div>
-    <div class="col-md-9 col-xs-9 aside2">
+
+    <!-- Mid Category bar (3/4 for the Left Nav and mid category bar => 1/4 for the whole large screen) -->
+    <div class="col-xs-9 col-md-9 aside2">
       <div class="row navside2">
-        <div class="tab-content"> 
+        <!-- data-toggle="tab" -->
+        <div class="tab-content">
+          <!-- list of articles / posts -->
           {% for category in site.categories %} 
-            <div class="tab-pane" id="{{ category[0] }}">
-              <div class="list-group">
-                {% for post in category[1] %}
-                  <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
-                {% endfor %}
-              </div>
-            </div>
-          {% endfor %}      
-          <div class="tab-pane" id="tags">
-            <div class="panel-group" id="accordion">
-              {% for tag in site.tags %}
-                <div class="panel panel-info">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#{{ tag[0] }}">{{ tag[0] }}</a>
-                      <span class="badge pull-right">{{ tag[1].size }}</span>
-                    </h4>
-                  </div>
-                  <div id="{{ tag[0] }}" class="panel-collapse collapse">
-                    {% for post in tag[1] %}
-                      <a  href='{{ post.url }}' class="list-group-item pjaxlink">
-                        {{post.title}}
-                      </a>
-                    {% endfor %}
-                  </div>
-                </div>
+          <div class="tab-pane" id="{{ category[0] }}">
+            <div class="list-group">
+              {% for post in category[1] %}
+              <!-- article / post -->
+              <a class="list-group-item pjaxlink" href="{{ post.url }}" >{{post.title}}</a>
               {% endfor %}
             </div>
           </div>
+          {% endfor %}
+
+          <!-- list of tags -->
+          <div class="tab-pane" id="tags">
+            <div class="panel-group" id="accordion">
+              {% for tag in site.tags %}
+              <!-- tag -->
+              <div class="panel panel-default">
+                <!-- tag name and number of posts for this tag -->
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#{{ tag[0] }}">
+                      <span style="color:#3e3e3e">{{ tag[0] }}</span>
+                      <span class="badge pull-right">{{ tag[1].size }}</span>
+                    </a>
+                  </h4>
+                </div>
+                <!-- collapse this tag -->
+                <div id="{{ tag[0] }}" class="panel-collapse collapse">
+                  {% for post in tag[1] %}
+                  <a  href='{{ post.url }}' class="list-group-item pjaxlink">{{post.title}}</a>
+                  {% endfor %}
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
+        <!-- Only difference between base_title.html and base.html -->
         {% include header_title.html %}
         {% seo %}
         <link rel="amphtml" href="https://mercury.postlight.com/amp?url={{ site.url }}{{ post.url }}">
@@ -17,10 +18,11 @@
         </script>
     </head>
     <body>
+        <!-- Bootstrap requires a containing element to wrap site contents and house our grid system. -->
         <div class="container">
             <div class="row">
                 {% include navside.html %}
-                <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 aside3">
+                <div class="col-sm-12 col-xs-12 col-md-8 col-lg-8 aside3">
                     <div id="container">
                         <div id="pjax">
                             {{ content }}

@@ -1,5 +1,6 @@
 <meta charset="utf-8">
 <meta property="wb:webmaster" content="73ad5627d20a050d" />
+<!-- Only difference between header_title.html and header.html -->
 <title>{{ page.titlename }} | {{ site.title }}</title>
 <meta name="author" content="{{ site.author.name }}">
 {% if page.keywords %}
@@ -9,7 +10,8 @@
   <meta name="description " content="{{ page.description  }}">
 {% endif %}
 <link rel="shortcut icon" href="{{ site.favicon }}" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- follow bootstrap doc -->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="/public/css/css_backup.css">
 <link rel="stylesheet" href="/public/css/bootstrap.css">
 <link rel="stylesheet" href="/public/css/font-awesome.css">

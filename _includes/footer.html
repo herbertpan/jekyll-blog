@@ -1,8 +1,10 @@
+<!-- " + " ? -->
 <div style="position:fixed;right:15px;top:62px;">
   <button id="content_btn" class="btn btn-primary" style="width:43px; height:34px;">
     <i class="fa fa-lg fa-plus"></i>
   </button>
 </div>
+<!-- show/hide nav and category -->
 <div style="position:fixed;right:15px;top:20px;">
   <button id="nav_btn" class="btn btn-primary">
     <i class="fa fa-lg fa-navicon"></i>
@@ -10,12 +12,16 @@
 </div>
 <script type="text/javascript" src="/public/js/jquery.js"></script>
 <script type="text/javascript" src="/public/js/jquery.pjax.js"></script>
+<!-- follow bootstrap doc -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script type="text/javascript" src="/public/js/prettify/prettify.js"></script>
 <script type="text/javascript" src="/public/js/nprogress/nprogress.js"></script>
 <script type="text/javascript" src="/public/js/bootstrap.js"></script>
 <script type="text/javascript" src="/public/js/base.js"></script>
 <script>
+    // choose which nav tab to active by default
     $('a[href="#{{ site.active }}"]').tab('show');
+    // Progress bar
     $(document).on('pjax:start', function() { NProgress.start(); });
 	$(document).on('pjax:end',   function() { NProgress.done();  });
 </script>
